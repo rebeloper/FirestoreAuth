@@ -71,11 +71,7 @@ class UserProfileController: UIViewController {
     }
     
     @objc func handleSignOutButtonTapped() {
-        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        SparkService.showAlert(style: .actionSheet, title: nil, message: nil, actions: [signOutAction, cancelAction], completion: nil)
+        
     }
     
     fileprivate func setupViews() {
