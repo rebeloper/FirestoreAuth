@@ -59,7 +59,7 @@ class UserProfileController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Fetch User", style: .done, target: self, action: #selector(handleFetchUserButtonTapped))
         
         setupViews()
-        fetchCurrentUser()
+//        fetchCurrentUser()
     }
     
     @objc func handleFetchUserButtonTapped() {
@@ -67,11 +67,55 @@ class UserProfileController: UIViewController {
     }
     
     func fetchCurrentUser() {
-        
+        hud.textLabel.text = "Fetching user..."
+        hud.show(in: view)
+        Spark.fetchCurrentSparkUser { (message, err, sparkUser) in
+            if let err = err {
+                SparkService.dismissHud(self.hud, text: "Error", detailText: "\(message) \(err.localizedDescription)", delay: 3)
+                return
+            }
+            guard let sparkUser = sparkUser else {
+                SparkService.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user", delay: 3)
+                return
+            }
+            
+            Spark.fetchProfileImage(sparkUser: sparkUser, completion: { (message, err, image) in
+                if let err = err {
+                    SparkService.dismissHud(self.hud, text: "Error", detailText: "\(message) \(err.localizedDescription)", delay: 3)
+                    return
+                }
+                guard let image = image else {
+                    SparkService.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user", delay: 3)
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                    self.nameLabel.text = sparkUser.name
+                    self.uidLabel.text = sparkUser.uid
+                    self.emailLabel.text = sparkUser.email
+                }
+                
+                SparkService.dismissHud(self.hud, text: "Success", detailText: "Successfully fetched user", delay: 3)
+            })
+        }
     }
     
     @objc func handleSignOutButtonTapped() {
-        
+        Spark.logout { (result, err) in
+            if let err = err {
+                SparkService.showAlert(style: .alert, title: "Sign Out Error", message: "Failed to sign out with error: \(err.localizedDescription)")
+                return
+            }
+            
+            if result {
+                let controller = WelcomeController()
+                let navController = UINavigationController(rootViewController: controller)
+                self.present(navController, animated: true, completion: nil)
+            } else {
+                SparkService.showAlert(style: .alert, title: "Sign Out Error", message: "Failed to sign out")
+            }
+        }
     }
     
     fileprivate func setupViews() {

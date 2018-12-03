@@ -36,13 +36,32 @@ class WelcomeController: UIViewController {
     }()
     
     @objc func handleSignInWithFacebookButtonTapped() {
+        hud.textLabel.text = "Signing in with Facebook..."
+        hud.show(in: view)
+        Spark.signInWithFacebook(in: self) { (message, err, sparkUser) in
+            if let err = err {
+                SparkService.dismissHud(self.hud, text: "Error", detailText: "\(message) \(err.localizedDescription)", delay: 3)
+                return
+            }
+            guard let sparkUser = sparkUser else {
+                SparkService.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user", delay: 3)
+                return
+            }
+            
+            print("Successfully signed in with Facebook with Spark User: \(sparkUser)")
+            SparkService.dismissHud(self.hud, text: "Success", detailText: "Successfully signed in with Facebook", delay: 3)
+            let when = DispatchTime.now() + 3
+            DispatchQueue.main.asyncAfter(deadline: when, execute: {
+                self.dismiss(animated: true, completion: nil)
+            })
+        }
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.title = "Welcome"
+        navigationItem.title = "Wellcome"
         setupViews()
     }
     

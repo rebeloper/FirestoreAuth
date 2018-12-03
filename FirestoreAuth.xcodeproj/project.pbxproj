@@ -15,6 +15,7 @@
 		C9E3DBA521B03EB7002FDCE4 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3DBA121B03EB6002FDCE4 /* Service.swift */; };
 		C9E3DBA621B03EB7002FDCE4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3DBA221B03EB6002FDCE4 /* HomeController.swift */; };
 		C9E3DBA721B03EB7002FDCE4 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3DBA321B03EB7002FDCE4 /* WelcomeController.swift */; };
+		C9E3DBC321B049E5002FDCE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9E3DBC221B049E5002FDCE4 /* GoogleService-Info.plist */; };
 		CF54B29E38FC4BABDC6AFC0B /* Pods_FirestoreAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D52F51BAC29166430E3819 /* Pods_FirestoreAuth.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		C9E3DBA121B03EB6002FDCE4 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C9E3DBA221B03EB6002FDCE4 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C9E3DBA321B03EB7002FDCE4 /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
+		C9E3DBC221B049E5002FDCE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		C9E3DB9021B03C1E002FDCE4 /* FirestoreAuth */ = {
 			isa = PBXGroup;
 			children = (
+				C9E3DBC221B049E5002FDCE4 /* GoogleService-Info.plist */,
 				C9E3DB9121B03C1E002FDCE4 /* AppDelegate.swift */,
 				C9E3DBA121B03EB6002FDCE4 /* Service.swift */,
 				C9E3DB9321B03C1E002FDCE4 /* RootViewController.swift */,
@@ -94,7 +97,6 @@
 				6CDE1766C7FEDEF7E14290B7 /* Pods-FirestoreAuth.debug.xcconfig */,
 				BCADD1798069E00DB6257658 /* Pods-FirestoreAuth.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -160,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9E3DB9621B03C20002FDCE4 /* Assets.xcassets in Resources */,
+				C9E3DBC321B049E5002FDCE4 /* GoogleService-Info.plist in Resources */,
 				C9E3DB9921B03C20002FDCE4 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
